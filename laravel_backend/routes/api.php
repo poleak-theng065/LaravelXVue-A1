@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\AuthorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,10 @@ Route::prefix('/members')->group(function(){
     Route::delete('/delete/{id}', [MemberController::class, 'destroy']);
 });
 
+Route::prefix('/authors')->group(function(){
+    Route::get('/', [AuthorController::class, 'index']);
+    Route::get('/{id}', [AuthorController::class, 'show']);
+    Route::post('/', [AuthorController::class, 'create']);
+    Route::put('/edit/{id}', [AuthorController::class, 'edit']);
+    Route::delete('/delete/{id}', [AuthorController::class, 'destroy']);
+});
