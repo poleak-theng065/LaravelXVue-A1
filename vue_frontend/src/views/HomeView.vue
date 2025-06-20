@@ -1,10 +1,11 @@
 <template>
-  <div>
-    
-  </div>
+
+<Footer />
 </template>
 
 <script setup>
+
+import Footer from '../../src/components/Footer.vue';
 
 </script>
 
