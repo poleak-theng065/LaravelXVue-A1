@@ -12,54 +12,111 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        $member = Members::all();
+        if($member->isEmpty()){
+            $memberdata = [
+                'message' => 'not member found',
+                'data' =>[]
+            ];
+            return response()->json()($member, 404);
+        }else{
+            $memberdata = [
+                'mesage' => 'member successfully',
+                'data'=>$member
+            ];
+        }
+        return response()->json($memberdata, 200);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $member = Members::create([
+            'follName' => $request ->follName,
+            'email' => $request -> email,
+            'phoneNumber' =>$request-> phoneNumber,
+            'adress' => $request->adress
+        ]);
+        if (!$member){
+            return response()->json([
+                'message' => 'Failed to create member',
+            ],500);
+        }else {
+            return response()->json([
+                'message' => 'member create successfully',
+                'data' =>$member
+            ],201);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Members $members)
+    public function show($id)
     {
-        //
-    }
+        $member = Members::find($id);
+        if ($member){
+            $memberdata = [
+                'message' => 'member retriveed successfully',
+                'data' => $member
+            ];
+            return response()-> json($memberdata, 200);
 
+        }else {
+            $memberdata = [
+                'message' => 'member not found',
+                'data' => null
+            ];
+
+            return response()-> json($memberdata, 404);
+        }
+    }
+    
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Members $members)
+    public function edit(Request $request, $id)
     {
-        //
+        $member = Members::where('id', $id)->update([
+            'follName' => $request ->follName,
+            'email' => $request -> email,
+            'phoneNumber' =>$request-> phoneNumber,
+            'adress' => $request->adress
+        ]);
+    
+        if ($member) {
+            return response()->json([
+                'message' => 'member updated successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Failed to update member',
+            ], 500);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Members $members)
-    {
-        //
-    }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Members $members)
+    public function destroy($id)
     {
-        //
+        $member = Members::find($id);
+        $member->delete();
+        if ($member) {
+            $memberdata = [
+                'message' => 'memeber deleted successfully',
+            ];
+            return response()->json($memberdata, 200);
+        } else {
+            $memberdata = [
+                'message' => 'Failed to delete member',
+            ];
+            return response()->json($memberdata, 500);
+        }
     }
 }
