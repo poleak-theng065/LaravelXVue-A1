@@ -30,13 +30,13 @@ Route::prefix('/books')->group(function(){
     Route::delete('/delete/{id}', [BookController::class, 'destroy']);
 });
 
-Route::prefix('/members')->group(function(){
-    Route::get('/', [MemberController::class, 'index']);
-    Route::get('/{id}', [MemberController::class, 'show']);
-    Route::post('/', [MemberController::class, 'create']);
-    Route::put('/edit/{id}', [MemberController::class, 'edit']);
-    Route::delete('/delete/{id}', [MemberController::class, 'destroy']);
-});
+// Route::prefix('/members')->group(function(){
+//     Route::get('/', [MemberController::class, 'index']);
+//     Route::get('/{id}', [MemberController::class, 'show']);
+//     Route::post('/', [MemberController::class, 'create']);
+//     Route::put('/edit/{id}', [MemberController::class, 'edit']);
+//     Route::delete('/delete/{id}', [MemberController::class, 'destroy']);
+// });
 
 Route::prefix('/authors')->group(function(){
     Route::get('/', [AuthorController::class, 'index']);
