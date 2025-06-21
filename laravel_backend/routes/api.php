@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MembersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
@@ -30,13 +31,13 @@ Route::prefix('/books')->group(function(){
     Route::delete('/delete/{id}', [BookController::class, 'destroy']);
 });
 
-// Route::prefix('/members')->group(function(){
-//     Route::get('/', [MemberController::class, 'index']);
-//     Route::get('/{id}', [MemberController::class, 'show']);
-//     Route::post('/', [MemberController::class, 'create']);
-//     Route::put('/edit/{id}', [MemberController::class, 'edit']);
-//     Route::delete('/delete/{id}', [MemberController::class, 'destroy']);
-// });
+Route::prefix('/members')->group(function(){
+    Route::get('/', [MembersController::class, 'index']);
+    Route::get('/{id}', [MembersController::class, 'show']);
+    Route::post('/', [MembersController::class, 'create']);
+    Route::put('/edit/{id}', [MembersController::class, 'edit']);
+    Route::delete('/delete/{id}', [MembersController::class, 'destroy']);
+});
 
 Route::prefix('/authors')->group(function(){
     Route::get('/', [AuthorController::class, 'index']);
