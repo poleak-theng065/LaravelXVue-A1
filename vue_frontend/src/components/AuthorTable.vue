@@ -183,7 +183,7 @@ const editAuthorData = ref({})
 // ------------------------
 const fetchAuthors = async () => {
   try {
-    const response = await axios.get('http://192.168.108.91:8000/api/authors/')
+    const response = await axios.get('http://192.168.108.62:8000/api/authors/')
     authors.value = response.data.data || response.data
   } catch (error) {
     alert('❌ Failed to fetch authors')
@@ -196,7 +196,7 @@ onMounted(fetchAuthors)
 // ------------------------
 const getAuthorById = async (id) => {
   try {
-    const res = await axios.get(`http://192.168.108.91:8000/api/authors/${id}`)
+    const res = await axios.get(`http://192.168.108.62:8000/api/authors/${id}`)
     selectedAuthor.value = res.data
   } catch (err) {
     alert('❌ Cannot fetch author by ID')
@@ -207,7 +207,7 @@ const getAuthorById = async (id) => {
 // create authors -- post method
 const submitForm = async () => {
   try {
-    const res = await axios.post('http://192.168.108.91:8000/api/authors/', newAuthor.value)
+    const res = await axios.post('http://192.168.108.62:8000/api/authors/', newAuthor.value)
     authors.value.push(res.data)
     newAuthor.value = { name: '', DOB: '', nationality: '', NumberOfWrittenBook: null }
     showform.value = false
@@ -229,7 +229,7 @@ const editAuthor = (author) => {
 const submitEditForm = async () => {
   const id = editAuthorData.value.id
   try {
-    const res = await axios.put(`http://192.168.108.91:8000/api/authors/edit/${id}`, editAuthorData.value)
+    const res = await axios.put(`http://192.168.108.62:8000/api/authors/edit/${id}`, editAuthorData.value)
     const index = authors.value.findIndex(a => a.id === id)
     if (index !== -1) authors.value[index] = res.data
     closeEditForm()
@@ -250,7 +250,7 @@ const closeEditForm = () => {
 const deleteAuthor = async (id) => {
   if (!confirm('Are you sure you want to delete this author?')) return
   try {
-    await axios.delete(`http://192.168.108.91:8000/api/authors/delete/${id}`)
+    await axios.delete(`http://192.168.108.62:8000/api/authors/delete/${id}`)
     authors.value = authors.value.filter((a) => a.id !== id)
   } catch (err) {
     alert('❌ Failed to delete author')
