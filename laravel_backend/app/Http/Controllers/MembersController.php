@@ -34,7 +34,7 @@ class MembersController extends Controller
     public function create(Request $request)
     {
         $member = Members::create([
-            'follName' => $request ->follName,
+            'fullName' => $request ->fullName,
             'email' => $request -> email,
             'phoneNumber' =>$request-> phoneNumber,
             'adress' => $request->adress
@@ -80,7 +80,7 @@ class MembersController extends Controller
     public function edit(Request $request, $id)
     {
         $member = Members::where('id', $id)->update([
-            'follName' => $request ->follName,
+            'fullName' => $request ->fullName,
             'email' => $request -> email,
             'phoneNumber' =>$request-> phoneNumber,
             'adress' => $request->adress
