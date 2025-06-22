@@ -1,6 +1,6 @@
 <template>
     <nav class="h-20 flex items-center justify-between shadow-md bg-blue-200 p-10">
-        <div>
+        <div class="hidden sm:block">
             <h1>logo</h1>
         </div>
         <!-- <div><input type="search" class="bg-gray-200 border-2 border-blue-400  rounded-full px-3 py-1.5 w-100" placeholder="search here"></div> -->
