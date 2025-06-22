@@ -1,5 +1,5 @@
 <template>
-  <AuthorTable /> 
+  <AuthorTable />
   <Footer />
 </template>
 
@@ -8,4 +8,3 @@ import Footer from "../components/Footer.vue";
 import AuthorTable from "../components/AuthorTable.vue";
 </script>
 
-<style lang="scss" scoped></style>
