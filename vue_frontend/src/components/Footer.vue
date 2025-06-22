@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div class="flex justify-between p-10 h-50 bg-blue-200 mt-29">
+=======
+  <div class="flex justify-between p-10 h-50 bg-blue-200 mt-90">
+>>>>>>> 6ee13c7afa2b230a15d35f40dee239f133609edb
     <!-- Content of footer item  -->
     <div>
       <h1 class="font-bold text-xl">OUR TEAM</h1>
