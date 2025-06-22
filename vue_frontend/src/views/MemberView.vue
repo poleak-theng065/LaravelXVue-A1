@@ -1,10 +1,11 @@
 <template>
-
+    <MemberTable />
     <Footer />
 </template>
 
 <script setup>
-  import Footer from '../components/Footer.vue'
+  import MemberTable from '@/components/MemberTable.vue';
+  import Footer from '../components/Footer.vue';
 </script>
 
 <style lang="scss" scoped>
