@@ -18,13 +18,14 @@
 
 <script setup>
 import NavigationItem from "./NavigationItem.vue";
+import Search from "./Search.vue";
 import { ref } from "vue";
 
 const navItems = ref([
   { label: "Home", path: "/", icon: "home" },
-  { label: "Book", path: "/book",icon:"3p" },
+  { label: "Book", path: "/book",icon:"menu_book" },
   { label: "Author", path: "/author", icon:"account_circle"},
-  { label: "Member", path: "/member", icon:"account_circle"},
+  { label: "Member", path: "/member", icon:"group_add"},
  
 ]);
 </script>
