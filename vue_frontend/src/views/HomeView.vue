@@ -1,11 +1,13 @@
 <template>
 
+<AuthorTable /> 
 <Footer />
 </template>
 
 <script setup>
 
-import Footer from '../../src/components/Footer.vue';
+import Footer from '../components/Footer.vue';
+import AuthorTable from '../components/AuthorTable.vue';
 
 </script>
 
