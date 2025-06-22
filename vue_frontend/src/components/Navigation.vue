@@ -3,10 +3,6 @@
         <div class="img">
             <img src="../assets/image.png" class="w-20">
         </div>
-<<<<<<< HEAD
-        <div><input type="search" class="bg-gray-200 border-2 border-blue-400  rounded-full px-3 py-1.5 w-100" placeholder="search here"></div>
-=======
->>>>>>> 6ee13c7afa2b230a15d35f40dee239f133609edb
   <div id="nav-item" class="flex pr-20 gap-10 ">
     <NavigationItem class="active:bg-blue-300 hover:bg-blue-700 hover:text-white p-2 hover:rounded-full  "
       v-for="item in navItems"
