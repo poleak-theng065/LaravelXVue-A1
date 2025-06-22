@@ -1,9 +1,15 @@
+<template>
+
+<!-- <AuthorTable />  -->
+<Footer />
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
+import Footer from '../components/Footer.vue';
+// import AuthorTable from '../components/AuthorTable.vue';
+
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="scss" scoped>
+</style>
