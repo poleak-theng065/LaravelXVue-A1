@@ -5,23 +5,15 @@
     </h1>
 
     <div>
-      <button
-        @click="showform = !showform"
-        class="bg-blue-300 p-2 px-7 rounded-sm font-semibold hover:text-white hover:bg-blue-600 hover:cursor-pointer"
-      >
+      <button @click="showform = !showform"
+        class="bg-blue-300 p-2 px-7 rounded-sm font-semibold hover:text-white hover:bg-blue-600 hover:cursor-pointer">
         Add Member
       </button>
     </div>
 
-    <div
-      v-if="showform"
-      class="shadow-md border rounded-lg z-10 absolute bg-gray-50 top-20 left-100 w-[550px] h-auto"
-    >
+    <div v-if="showform" class="shadow-md border rounded-lg z-10 absolute bg-gray-50 top-20 left-100 w-[550px] h-auto">
       <form @submit.prevent="submitForm" class="p-7 w-full">
-        <div
-          @click="showform = false"
-          class="text-2xl flex justify-end hover:text-gray-500 hover:cursor-pointer"
-        >
+        <div @click="showform = false" class="text-2xl flex justify-end hover:text-gray-500 hover:cursor-pointer">
           <i class="fa-regular fa-circle-xmark"></i>
         </div>
 
@@ -31,53 +23,31 @@
 
         <div class="form-group mb-3 w-full">
           <label for="fullName">Full Name</label><br />
-          <input
-            v-model="newMember.fullName"
-            type="text"
-            id="fullName"
-            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-            placeholder="Enter full name..."
-          />
+          <input v-model="newMember.fullName" type="text" id="fullName"
+            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2" placeholder="Enter full name..." />
         </div>
 
         <div class="form-group mb-3 w-full">
           <label for="email">Email</label><br />
-          <input
-            v-model="newMember.email"
-            type="email"
-            id="email"
-            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-            placeholder="Enter email address..."
-          />
+          <input v-model="newMember.email" type="email" id="email"
+            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2" placeholder="Enter email address..." />
         </div>
 
         <div class="form-group mb-3 w-full">
           <label for="phoneNumber">Phone Number</label><br />
-          <input
-            v-model="newMember.phoneNumber"
-            type="text"
-            id="phoneNumber"
-            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-            placeholder="Enter phone number..."
-          />
+          <input v-model="newMember.phoneNumber" type="text" id="phoneNumber"
+            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2" placeholder="Enter phone number..." />
         </div>
 
         <div class="form-group mb-3 w-full">
           <label for="adress">Address</label><br />
-          <input
-            v-model="newMember.adress"
-            type="text"
-            id="adress"
-            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-            placeholder="Enter address..."
-          />
+          <input v-model="newMember.adress" type="text" id="adress"
+            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2" placeholder="Enter address..." />
         </div>
 
         <div class="flex justify-end items-end">
-          <button
-            type="submit"
-            class="bg-blue-300 p-2 px-7 rounded-sm font-semibold hover:text-white hover:bg-blue-600 hover:cursor-pointer mt-10"
-          >
+          <button type="submit"
+            class="bg-blue-300 p-2 px-7 rounded-sm font-semibold hover:text-white hover:bg-blue-600 hover:cursor-pointer mt-10">
             Submit
           </button>
         </div>
@@ -106,9 +76,15 @@
           <td class="px-6 py-4 text-sm text-gray-700">{{ member.phoneNumber }}</td>
           <td class="px-6 py-4 text-sm text-gray-700">{{ member.adress }}</td>
           <td class="px-6 py-4 text-sm text-gray-700 space-x-2">
-            <button class="text-blue-600 hover:underline cursor-pointer" @click="showAuthor(member)">Show</button>
-            <button class="text-yellow-600 hover:underline cursor-pointer" @click="editAuthor(member)">Edit</button>
-            <button class="text-red-600 hover:underline cursor-pointer" @click="deleteAuthor(member.id)">Delete</button>
+            <button class="text-blue-600 hover:underline cursor-pointer" @click="showAuthor(member)">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button class="text-yellow-600 hover:underline cursor-pointer" @click="editAuthor(member)"> <i
+                class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button class="text-red-600 hover:underline cursor-pointer" @click="deleteAuthor(member.id)"> <i
+                class="fa-solid fa-trash"></i>
+            </button>
           </td>
         </tr>
       </tbody>
@@ -135,16 +111,21 @@
         </template>
 
         <template v-else>
-          <div><label class="font-semibold">Full Name</label><input v-model="selectedMember.fullName" class="w-full border p-2 rounded" /></div>
-          <div><label class="font-semibold">Email</label><input v-model="selectedMember.email" class="w-full border p-2 rounded" /></div>
-          <div><label class="font-semibold">Phone Number</label><input v-model="selectedMember.phoneNumber" class="w-full border p-2 rounded" /></div>
-          <div><label class="font-semibold">Address</label><input v-model="selectedMember.adress" class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Full Name</label><input v-model="selectedMember.fullName"
+              class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Email</label><input v-model="selectedMember.email"
+              class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Phone Number</label><input v-model="selectedMember.phoneNumber"
+              class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Address</label><input v-model="selectedMember.adress"
+              class="w-full border p-2 rounded" /></div>
         </template>
       </div>
 
       <div class="flex justify-end gap-3 mt-6">
         <button @click="closeCard" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Close</button>
-        <button v-if="isEditing" @click="updateMember" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Update</button>
+        <button v-if="isEditing" @click="updateMember"
+          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Update</button>
       </div>
     </div>
   </div>
