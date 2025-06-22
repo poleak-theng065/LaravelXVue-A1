@@ -4,7 +4,6 @@
       <i class="fa-solid fa-user-tie"></i> Member List :
     </h1>
 
-    <!-- Button to show form -->
     <div>
       <button
         @click="showform = !showform"
@@ -14,7 +13,6 @@
       </button>
     </div>
 
-    <!-- Create Member Form -->
     <div
       v-if="showform"
       class="shadow-md border rounded-lg z-10 absolute bg-gray-50 top-20 left-100 w-[550px] h-auto"
@@ -31,28 +29,15 @@
           <h1 class="font-bold text-2xl">Create Member Form</h1>
         </div>
 
-        <div class="flex gap-3">
-          <div class="form-group mb-3 w-full">
-            <label for="firstName">First Name</label><br />
-            <input
-              v-model="newMember.firstName"
-              type="text"
-              id="firstName"
-              class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-              placeholder="Enter first name..."
-            />
-          </div>
-
-          <div class="form-group mb-3 w-full">
-            <label for="lastName">Last Name</label><br />
-            <input
-              v-model="newMember.lastName"
-              type="text"
-              id="lastName"
-              class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
-              placeholder="Enter last name..."
-            />
-          </div>
+        <div class="form-group mb-3 w-full">
+          <label for="fullName">Full Name</label><br />
+          <input
+            v-model="newMember.fullName"
+            type="text"
+            id="fullName"
+            class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
+            placeholder="Enter full name..."
+          />
         </div>
 
         <div class="form-group mb-3 w-full">
@@ -78,11 +63,11 @@
         </div>
 
         <div class="form-group mb-3 w-full">
-          <label for="address">Address</label><br />
+          <label for="adress">Address</label><br />
           <input
-            v-model="newMember.address"
+            v-model="newMember.adress"
             type="text"
-            id="address"
+            id="adress"
             class="border p-1 px-3 py-2 w-full rounded-lg border-gray-400 mt-2"
             placeholder="Enter address..."
           />
@@ -106,8 +91,7 @@
       <thead class="bg-blue-100 text-left">
         <tr>
           <th class="px-6 py-3 text-sm font-semibold text-gray-700">No.</th>
-          <th class="px-6 py-3 text-sm font-semibold text-gray-700">First Name</th>
-          <th class="px-6 py-3 text-sm font-semibold text-gray-700">Last Name</th>
+          <th class="px-6 py-3 text-sm font-semibold text-gray-700">Full Name</th>
           <th class="px-6 py-3 text-sm font-semibold text-gray-700">Email</th>
           <th class="px-6 py-3 text-sm font-semibold text-gray-700">Phone Number</th>
           <th class="px-6 py-3 text-sm font-semibold text-gray-700">Address</th>
@@ -115,52 +99,26 @@
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-        <tr
-          v-for="(member, index) in members"
-          :key="member.id"
-          class="hover:bg-gray-100"
-        >
+        <tr v-for="(member, index) in members" :key="member.id" class="hover:bg-gray-100">
           <td class="px-6 py-4 text-sm text-gray-700">{{ index + 1 }}</td>
-          <td class="px-6 py-4 text-sm text-gray-700">{{ member.firstName }}</td>
-          <td class="px-6 py-4 text-sm text-gray-700">{{ member.lastName }}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">{{ member.fullName }}</td>
           <td class="px-6 py-4 text-sm text-gray-700">{{ member.email }}</td>
           <td class="px-6 py-4 text-sm text-gray-700">{{ member.phoneNumber }}</td>
-          <td class="px-6 py-4 text-sm text-gray-700">{{ member.address }}</td>
+          <td class="px-6 py-4 text-sm text-gray-700">{{ member.adress }}</td>
           <td class="px-6 py-4 text-sm text-gray-700 space-x-2">
-            <button
-              class="text-blue-600 hover:underline cursor-pointer"
-              @click="showAuthor(member)"
-            >
-              Show
-            </button>
-            <button
-              class="text-yellow-600 hover:underline cursor-pointer"
-              @click="editAuthor(member)"
-            >
-              Edit
-            </button>
-            <button
-              class="text-red-600 hover:underline cursor-pointer"
-              @click="deleteAuthor(member.id)"
-            >
-              Delete
-            </button>
+            <button class="text-blue-600 hover:underline cursor-pointer" @click="showAuthor(member)">Show</button>
+            <button class="text-yellow-600 hover:underline cursor-pointer" @click="editAuthor(member)">Edit</button>
+            <button class="text-red-600 hover:underline cursor-pointer" @click="deleteAuthor(member.id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Member View/Edit Card Modal -->
-  <div
-    v-if="selectedMember"
-    class="fixed inset-0 flex items-center justify-center z-50"
-  >
+  <!-- View/Edit Card -->
+  <div v-if="selectedMember" class="fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white p-8 rounded-lg w-[500px] shadow-xl relative">
-      <button
-        @click="closeCard"
-        class="absolute top-3 right-3 text-2xl text-gray-600 hover:text-red-500"
-      >
+      <button @click="closeCard" class="absolute top-3 right-3 text-2xl text-gray-600 hover:text-red-500">
         <i class="fa-regular fa-circle-xmark"></i>
       </button>
 
@@ -169,184 +127,106 @@
       </h2>
 
       <div class="space-y-4">
-        <!-- Show details as plain text -->
         <template v-if="!isEditing">
-          <p><strong>First Name:</strong> {{ selectedMember.firstName }}</p>
-          <p><strong>Last Name:</strong> {{ selectedMember.lastName }}</p>
+          <p><strong>Full Name:</strong> {{ selectedMember.fullName }}</p>
           <p><strong>Email:</strong> {{ selectedMember.email }}</p>
           <p><strong>Phone Number:</strong> {{ selectedMember.phoneNumber }}</p>
-          <p><strong>Address:</strong> {{ selectedMember.address }}</p>
+          <p><strong>Address:</strong> {{ selectedMember.adress }}</p>
         </template>
 
-        <!-- Edit details as inputs -->
         <template v-else>
-          <div>
-            <label class="font-semibold">First Name</label>
-            <input
-              v-model="selectedMember.firstName"
-              class="w-full border p-2 rounded"
-            />
-          </div>
-          <div>
-            <label class="font-semibold">Last Name</label>
-            <input
-              v-model="selectedMember.lastName"
-              class="w-full border p-2 rounded"
-            />
-          </div>
-          <div>
-            <label class="font-semibold">Email</label>
-            <input
-              v-model="selectedMember.email"
-              class="w-full border p-2 rounded"
-            />
-          </div>
-          <div>
-            <label class="font-semibold">Phone Number</label>
-            <input
-              v-model="selectedMember.phoneNumber"
-              class="w-full border p-2 rounded"
-            />
-          </div>
-          <div>
-            <label class="font-semibold">Address</label>
-            <input
-              v-model="selectedMember.address"
-              class="w-full border p-2 rounded"
-            />
-          </div>
+          <div><label class="font-semibold">Full Name</label><input v-model="selectedMember.fullName" class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Email</label><input v-model="selectedMember.email" class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Phone Number</label><input v-model="selectedMember.phoneNumber" class="w-full border p-2 rounded" /></div>
+          <div><label class="font-semibold">Address</label><input v-model="selectedMember.adress" class="w-full border p-2 rounded" /></div>
         </template>
       </div>
 
       <div class="flex justify-end gap-3 mt-6">
-        <button
-          @click="closeCard"
-          class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
-        >
-          Close
-        </button>
-        <button
-          v-if="isEditing"
-          @click="updateMember"
-          class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Update
-        </button>
+        <button @click="closeCard" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Close</button>
+        <button v-if="isEditing" @click="updateMember" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Update</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
-const showform = ref(false)
-
-const members = ref([
-  {
-    id: 1,
-    firstName: "Sopheap",
-    lastName: "Chum",
-    email: "sopheap.chum@gmail.com",
-    phoneNumber: "+855 12 345 678",
-    address: "123 Preah Monivong Blvd, Phnom Penh, Cambodia",
-  },
-  {
-    id: 2,
-    firstName: "Piseth",
-    lastName: "Seng",
-    email: "piseth.seng@gmail.com",
-    phoneNumber: "+855 10 987 654",
-    address: "456 Russian Blvd, Phnom Penh, Cambodia",
-  },
-  {
-    id: 3,
-    firstName: "Vicheth",
-    lastName: "Thon",
-    email: "vicheth.thon@gmail.com",
-    phoneNumber: "+855 23 456 789",
-    address: "789 Street 214, Phnom Penh, Cambodia",
-  },
-  {
-    id: 4,
-    firstName: "Sreyleak",
-    lastName: "Meng",
-    email: "sreyleak.meng@gmail.com",
-    phoneNumber: "+855 92 123 456",
-    address: "321 Monivong Blvd, Phnom Penh, Cambodia",
-  },
-]);
-
+const showform = ref(false);
+const members = ref([]);
 
 const newMember = ref({
-  firstName: "",
-  lastName: "",
+  fullName: "",
   email: "",
   phoneNumber: "",
-  address: "",
-})
+  adress: "",
+});
 
-const selectedMember = ref(null)
-const isEditing = ref(false)
+const selectedMember = ref(null);
+const isEditing = ref(false);
 
-function submitForm() {
-  if (
-    newMember.value.firstName &&
-    newMember.value.lastName &&
-    newMember.value.email &&
-    newMember.value.phoneNumber &&
-    newMember.value.address
-  ) {
-    const memberToAdd = {
-      id: Date.now(),
-      ...newMember.value,
-    }
-
-    members.value.push(memberToAdd)
-
-    // Reset form
-    newMember.value = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-      address: "",
-    }
-
-    showform.value = false
-  } else {
-    alert("⚠️ Please fill in all fields.")
+const fetchMembers = async () => {
+  try {
+    const response = await axios.get("http://192.168.108.91:8000/api/members/");
+    members.value = response.data.data;
+  } catch (error) {
+    console.error("❌ Failed to fetch members:", error);
   }
-}
+};
 
-function showAuthor(member) {
-  selectedMember.value = { ...member }
-  isEditing.value = false
-}
+onMounted(() => {
+  fetchMembers();
+});
 
-function editAuthor(member) {
-  selectedMember.value = { ...member }
-  isEditing.value = true
-}
-
-function closeCard() {
-  selectedMember.value = null
-  isEditing.value = false
-}
-
-function updateMember() {
-  const index = members.value.findIndex(
-    (m) => m.id === selectedMember.value.id
-  )
-  if (index !== -1) {
-    members.value[index] = { ...selectedMember.value }
-    closeCard()
+const submitForm = async () => {
+  try {
+    const response = await axios.post("http://192.168.108.91:8000/api/members/", newMember.value);
+    members.value.push(response.data.data);
+    newMember.value = { fullName: "", email: "", phoneNumber: "", adress: "" };
+    showform.value = false;
+  } catch (error) {
+    alert("❌ Failed to add member.");
+    console.error(error);
   }
-}
+};
 
-function deleteAuthor(id) {
-  members.value = members.value.filter((m) => m.id !== id)
-}
+const showAuthor = (member) => {
+  selectedMember.value = { ...member };
+  isEditing.value = false;
+};
+
+const editAuthor = (member) => {
+  selectedMember.value = { ...member };
+  isEditing.value = true;
+};
+
+const closeCard = () => {
+  selectedMember.value = null;
+  isEditing.value = false;
+};
+
+const updateMember = async () => {
+  try {
+    await axios.put(`http://192.168.108.91:8000/api/members/edit/${selectedMember.value.id}`, selectedMember.value);
+    const index = members.value.findIndex(m => m.id === selectedMember.value.id);
+    if (index !== -1) members.value[index] = { ...selectedMember.value };
+    closeCard();
+  } catch (error) {
+    console.error("❌ Failed to update member:", error);
+  }
+};
+
+const deleteAuthor = async (id) => {
+  if (!confirm("Are you sure you want to delete this member?")) return;
+  try {
+    await axios.delete(`http://192.168.108.91:8000/api/members/delete/${id}`);
+    members.value = members.value.filter(m => m.id !== id);
+  } catch (error) {
+    console.error("❌ Failed to delete member:", error);
+  }
+};
 </script>
 
 <style scoped></style>
