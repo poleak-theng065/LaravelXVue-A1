@@ -8,5 +8,3 @@
   import Footer from '../components/Footer.vue';
 </script>
 
-<style lang="scss" scoped>
-</style>
